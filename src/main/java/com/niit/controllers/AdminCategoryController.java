@@ -1,5 +1,7 @@
  package com.niit.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.niit.dao.CategoryDAO;
 import com.niit.models.Category;
 
@@ -50,6 +54,14 @@ public class AdminCategoryController {
 		return "redirect:/category";
 	}
 
-
+	@RequestMapping(value="/categorygson")
+	@ResponseBody
+	public String CategoryGson()
+	{
+		List<Category> list=categoryDAO.list();
+		Gson gson=new Gson();
+		String data=gson.toJson(list);
+		return data;
+	}
 
 }

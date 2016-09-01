@@ -26,6 +26,32 @@ li {
 	width: 50%;
 	margin: 0 auto;
 }
+footer{
+background:#333333;
+width:100%;
+overflow:hidden;
+opacity:0.90;
+}
+footer p, footer h3{
+color:#FFF;
+}
+footer p a{
+color:#FFF;
+text-decoration:none;
+}
+ul.social li{
+display:inline;
+}
+ul.social li img{
+height:50px;
+}
+footer.second{
+border-top:1px solid #4D4E50;
+background-color:#333333;
+max-height:50px;
+text-align:center;
+opacity:0.90;
+}
 </style>
 <meta charset="ISO-8859-1">
 <title>shop cart</title>
@@ -42,6 +68,10 @@ li {
 <link href="<c:url value="/resources/css/font-awesome.min.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/registers.css" />"
+	rel="stylesheet">
+<link href="<c:url value="/resources/css/logins.css" />"
+	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
@@ -50,9 +80,9 @@ li {
 <body>
 	<div class="w3-top">
 		<nav>
-			<ul class="w3-navbar w3-pink w3-card-2 w3-medium "
+			<ul class="w3-navbar w3-red w3-card-2 w3-medium "
 				style="opacity: 0.9">
-				<li><a href="/Welcome" class="w3-hover-none"><i
+				<li><a href="Welcome" class="w3-hover-none"><i
 						class="fa fa-home"></i> SHOPCART </a></li>
 				<c:choose>
 					<c:when test="${LoggedIn}">
@@ -71,15 +101,15 @@ li {
 					</c:when>
 
 					<c:otherwise>
-						<li style="float: right"><a href="Register"
-							class="w3-hover-none"><i class="fa fa-user-plus"></i></a></li>
+						<!-- <li style="float: right"><a href="Register"
+							class="w3-hover-none"><i class="fa fa-user-plus"></i></a></li> -->
 						<li style="float: right"><a href="login"
 							class="w3-hover-none"><i class="fa fa-sign-in"></i></a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
 
-			 <c:choose>
+			<c:choose>
 				<%-- <c:when test="${!Administrator}">
 					<!-- Category List -->
 					<c:if test="${!empty categoryList}">
@@ -97,7 +127,7 @@ li {
 						</div>
 					</c:if>
 				</c:when>
- --%> 
+ --%>
 				<c:when test="${Administrator}">
 					<ul
 						class="w3-navbar w3-light-pink w3-round w3-small menu w3-card-4 "
@@ -132,7 +162,7 @@ li {
 		</c:when>
 
 		<c:when test="${IfRegisterClicked}">
-			<c:import url="/WEB-INF/jsp/registers.jsp">
+			<c:import url="/WEB-INF/jsp/logins.jsp">
 			</c:import>
 		</c:when>
 	</c:choose>
@@ -172,7 +202,7 @@ li {
 						<div class="carousel-inner" role="listbox">
 							<div class="item active">
 								<img
-									src="<c:url value="/resources/images/corousel/1.jpg"></c:url>"
+									src="<c:url value="/resources/images/corousel/1.jpeg"></c:url>"
 									alt="Apple">
 								<div class="carousel-caption">
 									<span></span>
@@ -180,7 +210,7 @@ li {
 							</div>
 							<div class="item ">
 								<img
-									src="<c:url value="/resources/images/corousel/2.jpg"></c:url>"
+									src="<c:url value="/resources/images/corousel/2.jpeg"></c:url>"
 									alt="Apple">
 								<div class="carousel-caption">
 									<span></span>
@@ -196,7 +226,7 @@ li {
 							</div>
 							<div class="item">
 								<img
-									src="<c:url value="/resources/images/corousel/4.jpg"></c:url>"
+									src="<c:url value="/resources/images/corousel/4.jpeg"></c:url>"
 									alt="HP">
 								<div class="carousel-caption">
 									<span></span>
@@ -212,7 +242,7 @@ li {
 							</div>
 							<div class="item">
 								<img
-									src="<c:url value="/resources/images/corousel/6.png"></c:url>"
+									src="<c:url value="/resources/images/corousel/6.jpeg"></c:url>"
 									alt="Dell">
 								<div class="carousel-caption">
 									<span></span>
@@ -258,10 +288,11 @@ li {
 													<c:when test="${LoggedIn}">
 														<form action="addtoCart/${userId}/${product.id}">
 															<input type="number" value="1" name="quantity"
-																class="btn btn-xs btn-primary   col-xs-6 ">
-															<input type="submit" value="Add" class="btn btn-xs col-xs-6 btn-primary">
+																class="btn btn-xs btn-primary   col-xs-6 "> <input
+																type="submit" value="Add"
+																class="btn btn-xs col-xs-6 btn-primary">
 														</form>
-														
+
 													</c:when>
 												</c:choose>
 											</p>
@@ -270,22 +301,7 @@ li {
 									</div>
 								</div>
 
-								<%-- <li><a href=" ${product.id}" class="w3-hover-none">${product.name}</a></li>
-								<li><img alt="Image"
-									src="<c:url value="/WEB-INF/resources/images/product/${product.id}.jpg"></c:url>"></li>
 								
-								<c:choose>
-									<c:when test="${LoggedIn}">
-											<li><a href="addtoCart/${userId}/${product.id}"
-						class="w3-hover-none">Add to Cart</a></li>
-										<li>
-											<form action="addtoCart/${userId}/${product.id}">
-												<input type="number" value="1" name="quantity"> <input
-													type="submit" value="Add to Cart">
-											</form>
-										</li>
-									</c:when>
-								</c:choose> --%>
 							</c:forEach>
 						</div>
 						<!-- </ul> -->
@@ -294,81 +310,41 @@ li {
 			</c:when>
 		</c:choose>
 	</c:if>
-	<%-- <div class="row w3-card-8 w3-margin" style="margin-bottom: 0px">
-		<br>
-		<div class="col-xs-2 ">
-			<div class="thumbnail">
-				<img height="150px" width="150px" alt="${product.id}"
-					src="<c:url value="/WEB-INF/resources/images/product/Lap.jpg"></c:url>">
-				<div class="caption">
-					<p>
-						<input type="number" value="1" name="quantity"
-							class="btn btn-xs btn-primary   col-xs-6 "> <a href="#"
-							class="btn btn-xs btn-primary col-xs-6" role="button">Add</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div> --%>
-	<!-- Product List End -->
-	<footer class="footer-distributed w3-card-4 w3-black w3-margin-0"
+	
+	<footer class="footer-distributed w3-card-4 w3-red w3-margin-0"
 		style="opacity: 0.9">
 		<div class="footer-left">
-			<p>Payment Options</p>
-			<a href="#"><i class="fa fa-paypal" aria-hidden="true"></i> </a> . <a
-				href="#"><i class="fa fa-cc-amex" aria-hidden="true"></i> </a> . <a
-				href="#"><i class="fa fa-cc-mastercard" aria-hidden="true"></i>
-			</a> . <a href="#"><i class="fa fa-cc-visa" aria-hidden="true"></i> </a>
-			. <a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i>
-			</a> . <a href="#"><i class="fa fa-google-wallet" aria-hidden="true"></i>
-			</a> . <a href="#"><i class="fa fa-cc-stripe" aria-hidden="true"></i>
-			</a>
-			<p></p>
-			<p></p>
+		<h3>
+				<b>SHOPCART</b>
+			</h3>
 			<p>
-				shopcart <i class="fa fa-copyright" aria-hidden="true"> 2016</i>
-			</p>
-			<p></p>
-			<div class="footer-icons">
-				<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-					class="fa fa-twitter"></i></a> <a href="#"><i
-					class="fa fa-linkedin"></i></a> <a href="#"><i class="fa fa-github"></i></a>
-			</div>
-		</div>
+				<b>211-2221-123242</b><br>KUKATPALLY<br>
+				501203<br> vamshinath.231@gmail.com<br>
+		</p>
+				</div>
 		<div class="footer-center">
-			<div>
-				<i class="fa fa-map-marker"></i>
-				<p>
-					<span>21 Revolution Street</span> Paris, France
-				</p>
+		<h3>Keep in touch with us</h3>
+			<ul class="social">
+				<li><a href="https://www.facebook.com/"><img
+						src="http://www.w3newbie.com/wp-content/uploads/facebook.png" /></a></li>
+				<li><a href="#"><img
+						src="http://www.w3newbie.com/wp-content/uploads/youtube.png" /></a></li>
+				<li><a href="#"><img
+						src="http://www.w3newbie.com/wp-content/uploads/twitter.png" /></a></li>
+			</ul>
 			</div>
-			<div>
-				<i class="fa fa-phone"></i>
-				<p>+1 555 123456</p>
-			</div>
-			<div>
-				<i class="fa fa-envelope"></i>
-				<p>
-					<a href="mailto:support@company.com">support@shopcart.com</a>
-				</p>
-			</div>
-		</div>
+			
 		<div class="footer-right">
-			<p class="footer-company-about">
-				<span>About the company</span> <a href="http://www.secura.e-sim.org"
-					title="Summus, website template creation">Summus</a> is a web
-				design and development studio. We build responsive HTML5 and CSS3
-				templates, integrating best web design practices and up-to-date web
-				technologies to create great user experiences. We love what we do
-				and we hope you do too!
+		<p class="footer-company-about">
+		<img src="<c:url value="/resources/images/corousel/8.png"></c:url>"
+				alt="Sony">
+				<p>
+				shopcart <i class="fa fa-copyright" aria-hidden="true"> 2016-2020</i>
 			</p>
+			
 		</div>
 	</footer>
-
-
-	<!-- Carousel Script -->
-	<!--  -->
-	<script>
+		<script>
 		$(document).ready(function() {
 			// Activate Carousel
 			$("#carousel-home").carousel();
